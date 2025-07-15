@@ -10,7 +10,7 @@ def generar_id():
 
 # Threads
 class Thread(models.Model):
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='Board')
     titulo = models.CharField(max_length=255, blank=True)
     contenido = models.TextField()
     imagen = models.ImageField(upload_to='media/')
