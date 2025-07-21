@@ -123,6 +123,20 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+import os
+# Configuración correcta para STATICFILES_DIRS (nota la 'S' al final)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'posts/static'),
+    os.path.join(BASE_DIR, 'thread/static'),
+    os.path.join(BASE_DIR, 'boards/static')
+]
+
+# Ruta para archivos de medios (MEDIA)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ubicacion de los archivos estaticos
+STATIC_ROOT = BASE_DIR / 'media'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
