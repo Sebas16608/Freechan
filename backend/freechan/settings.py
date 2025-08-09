@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'boards',
-    'posts',
-    'threads',
+    'boards.apps.BoardsConfig',
+    'posts.apps.PostsConfig',
+    'threads.apps.ThreadsConfig',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
 ]
@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'freechan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'foro-database',
-        'USER': 'postgres',
+        'NAME': 'freechandb',
+        'USER': 'sebas',
         'PASSWORD': 'S3b@sr1234',
         'HOST': 'localhost',
-        'PORT': '5432'
+        'PORT': '5432',
     }
 }
 
