@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'boards',
     'posts',
-    'api',
     'threads',
     'rest_framework',
     'django_cleanup.apps.CleanupConfig',
