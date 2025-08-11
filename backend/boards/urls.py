@@ -7,5 +7,5 @@ router = routers.DefaultRouter()  # paréntesis importantes
 router.register(r"board", BoardViewSet)
 
 urlpatterns = [
-    path("api/boards/", include(router.url)),
+    path("api/", include(router.urls)),
 ]
