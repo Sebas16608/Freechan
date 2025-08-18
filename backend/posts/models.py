@@ -6,3 +6,7 @@ class Post(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name="posts")
     contenido = models.TextField()
     creado = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Post"
+        verbose_name_plural = "Posts"

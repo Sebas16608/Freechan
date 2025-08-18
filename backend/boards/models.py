@@ -6,3 +6,10 @@ class Board(models.Model):
     descripcion = models.TextField()
     portada = models.ImageField(upload_to="media")
     create_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Board"
+        verbose_name_plural = "Boards"
+
+    def __str__(self):
+        return self.titulo
