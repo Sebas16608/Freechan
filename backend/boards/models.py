@@ -14,3 +14,6 @@ class Board(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class Lista(models.Model):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='board')
