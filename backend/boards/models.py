@@ -5,7 +5,7 @@ class Board(models.Model):
     titulo = models.CharField(max_length=255)
     short_name = models.CharField(max_length=100, blank=False, default="BN")
     descripcion = models.TextField()
-    portada = models.ImageField(upload_to="")
+    portada = models.ImageField(upload_to='boards/', blank=True, null=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -14,6 +14,3 @@ class Board(models.Model):
 
     def __str__(self):
         return self.titulo
-    
-class Lista(models.Model):
-    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='board')
