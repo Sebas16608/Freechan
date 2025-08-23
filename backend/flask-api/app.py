@@ -12,3 +12,4 @@ app = Flask(__name__)
 @app.route("/api/boards")
 def get_boards():
     boards = Board.objects.all()
+    data = None
