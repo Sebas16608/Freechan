@@ -112,6 +112,23 @@ def get_thread():
     data=[thread_to_dict(t) for t in thread]
     return jsonify(data), 200
 
+# Metodo POST
+@app.route("/api/threads", methods=["POST"])
+def post_thread():
+    try:
+        data = request.get_json
+        if not data or "titulo" not in data:
+            return jsonify({"error": "Titulo requerrido"}), 400
+        thread = Thread.objects.create(
+            titulo = data["titulo"],
+            contenido = data["contenido"],
+            imagen = data["imagen"],
+            featured = data["featured"]
+        )
+        return jsonify({"mensaje": "Thread Creado correctamente", "thread": thread_to_dict(thread)}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 
 
 if __name__ == "__main__":
