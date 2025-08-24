@@ -116,7 +116,7 @@ def get_thread():
 @app.route("/api/threads", methods=["POST"])
 def post_thread():
     try:
-        data = request.get_json
+        data = request.get_json()
         if not data or "titulo" not in data:
             return jsonify({"error": "Titulo requerrido"}), 400
         thread = Thread.objects.create(
@@ -126,6 +126,25 @@ def post_thread():
             featured = data["featured"]
         )
         return jsonify({"mensaje": "Thread Creado correctamente", "thread": thread_to_dict(thread)}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
+# Metodo PUT
+@app.route("/api/threads/<int:id>", methods=["PUT"])
+def update_thread(id):
+    try:
+        thread = Thread.objects.get(id=id)
+        data = request.get_json()
+
+        if "titulo" in data:
+            thread.titulo = data["titulo"]
+        if "contenido" in data:
+            thread.contenido = data["contenido"]
+        if "imagen" in data:
+            thread.imagen = data["imagen"]
+        return jsonify({"mensaje": f"El hilo con el id: {id} se ha modificado correctamente"}), 200
+    except Thread.DoesNotExist:
+        return jsonify({"error": "El hilo no existe"}), 400
     except Exception as e:
         return jsonify({"error": str(e)})
 
