@@ -78,7 +78,7 @@ def update_boards(id):
         return jsonify({"error": str(e)}), 500
 
 # Metodo DELET
-@app.route("/api/boards/<int:id>")
+@app.route("/api/boards/<int:id>", methods=["DELET"])
 def delete_board(id):
     try:
         board = Board.objects.get(id=id)
@@ -88,6 +88,30 @@ def delete_board(id):
         return jsonify({"error": "El board no existe"})
     except Exception as e:
         return jsonify({"error": str(e)})
+    
+"""
+API de Threads
+"""
+from threads.models import Thread
+
+# funcion para conevertir un thread a dict
+def thread_to_dict(thread):
+    return {
+        "id": thread.id,
+        "titulo": thread.titulo,
+        "contenido": thread.contenido,
+        "imagen": thread.imagen.url if thread.imagen else None,
+        "created": thread.created,
+        "featured": thread.featured,
+    }
+
+# Metodo GET
+@app.route("/api/threads")
+def get_thread():
+    thread = Thread.objects.all()
+    data=[thread_to_dict(t) for t in thread]
+    return jsonify(data), 200
+
 
 if __name__ == "__main__":
     app.run(debug=True)
