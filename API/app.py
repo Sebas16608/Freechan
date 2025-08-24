@@ -106,11 +106,12 @@ def thread_to_dict(thread):
     }
 
 # Metodo GET
-@app.route("/api/threads")
+@app.route("/api/threads", methods=["GET"])
 def get_thread():
     thread = Thread.objects.all()
     data=[thread_to_dict(t) for t in thread]
     return jsonify(data), 200
+
 
 
 if __name__ == "__main__":
