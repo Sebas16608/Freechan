@@ -77,5 +77,17 @@ def update_boards(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+# Metodo DELET
+@app.route("/api/boards/<int:id>")
+def delete_board(id):
+    try:
+        board = Board.objects.get(id=id)
+        board.delete()
+        return jsonify({"mensaje": f"El board con el id: {id} fue eliminado correctamente"})
+    except Board.DoesNotExist:
+        return jsonify({"error": "El board no existe"})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 if __name__ == "__main__":
     app.run(debug=True)
