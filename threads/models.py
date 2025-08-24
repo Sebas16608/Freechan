@@ -6,6 +6,7 @@ class Thread(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='board')
     titulo = models.CharField(max_length=255)
     contenido = models.TextField()
+    imagen = models.ImageField(upload_to="media", null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     feautered = models.BooleanField(default=False)
     update = models.BooleanField(default=True)

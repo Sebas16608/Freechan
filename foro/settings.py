@@ -71,6 +71,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foro.wsgi.application'
 
+import os
+
+# Ruta absoluta donde se guardan los archivos subidos
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# URL para acceder a esos archivos en el navegador
+MEDIA_URL = "/media/"
+
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
