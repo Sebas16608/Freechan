@@ -148,7 +148,18 @@ def update_thread(id):
     except Exception as e:
         return jsonify({"error": str(e)})
 
-
+# Metodo DELET
+@app.route("/api/threads/<int:id>", methods=["DELETE"])
+def delete_thread(id):
+    try:
+        thread = Thread.objects.get(id=id)
+        thread.delete()
+        return jsonify({"mensaje": f"El hilo con el id {id} fue eliminado correctamente"})
+    except Thread.DoesNotExist:
+        return jsonify({"error": "El hilo no existe"})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
