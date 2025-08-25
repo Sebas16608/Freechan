@@ -16,4 +16,4 @@ Un foro estilo **4chan**, hecho con **Django** y **Flask API**, pensado como un 
 - [Python 3](https://www.python.org/)  
 - [Django](https://www.djangoproject.com/)  
 - [Flask](https://flask.palletsprojects.com/)  
-- SQLite solo de prueba a la hora de escalar se usara PostgreSQL.  
+- SQLite solo de prueba a la hora de escalar y producción se usara PostgreSQL.  
