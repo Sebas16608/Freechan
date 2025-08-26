@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'threads.apps.Threads.Config',
+    'threads.apps.ThreadsConfig',
     'boards.apps.BoardsConfig',
     'posts.apps.PostsConfig'
 
