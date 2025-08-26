@@ -204,5 +204,23 @@ def post_posts():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+# Metodo PUT
+@app.route("/api/posts/<int:id>", methods=["PUT"])
+def update_posts(id):
+    try:
+        posts = Post.objects.get(id=id)
+        data = request.get_json()
+        if "contenido" in data:
+            posts.contenido = data["contenido"]
+        if "imagen" in data:
+            posts.imagen = data["imagen"]
+        return jsonify({"mensaje": f"El post con el id {id} fue actualizado correctamente"})
+    except Post.DoesNotExist:
+        return jsonify({"error": "El Post no existe"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
