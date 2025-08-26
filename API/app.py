@@ -103,6 +103,7 @@ def threads_to_dict(thread):
         "imagen": thread.imagen.url if thread.imagen else None,
         "created": thread.created,
         "featured": thread.featured,
+        "board_id": thread.board.id if thread.board else None, 
     }
 
 # Metodo GET
@@ -123,6 +124,8 @@ def post_threads():
             titulo=data["titulo"],
             contenido=data["contenido"],
             imagen=data.get("imagen"),
+            board_id=data["board_id"],
+            created=data.get("created"),
             featured=data.get("featured", False)
         )
         return jsonify({"mensaje": "Thread creado correctamente", "thread": threads_to_dict(thread)}), 201
@@ -156,7 +159,7 @@ def delete_thread(id):
         thread.delete()
         return jsonify({"mensaje": f"El thread con el id {id} fue eliminado correctamente"})
     except Thread.DoesNotExist:
-        return jsonify({"error": "El thread no existe"})
+        return jsonify({"error": "El thread no existe"}), 404
     except Exception as e:
         return jsonify({"error": str(e)})
 
@@ -166,21 +169,40 @@ API Posts
 from posts.models import Post
 
 # funcion para codigo mas limpio
-def posts_to_dict(post):
+def post_to_dict(post):
     return {
         "id": post.id,
         "contenido": post.contenido,
         "imagen": post.imagen.url if post.imagen else None,
         "created": post.created,
         "featured": post.featured,
+        "thread_id": post.thread.id if post.thread else None,  # <- agregado
     }
 
 # Metodo GET
 @app.route("/api/posts", methods=["GET"])
 def get_posts():
     posts = Post.objects.all()
-    data = [posts_to_dict(p) for p in posts]
+    data = [post_to_dict(p) for p in posts]
     return jsonify(data), 200
+
+# Metodo POST
+@app.route("/api/posts", methods=["POST"])
+def post_posts():
+    try:
+        data = request.get_json()
+        if not data or "contenido" not in data:
+            return jsonify({"error": "Contenido requerido"}), 400
+        posts = Post.objects.create(
+            contenido=data["contenido"],
+            imagen=data.get("imagen"),
+            created=data.get("created"),
+            featured=data.get("featured"),
+            threard_id=data["thread_id"],
+        )
+        return jsonify({"mensaje": "Post creado", "post": post_to_dict(posts)}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
     app.run(debug=True)
