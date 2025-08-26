@@ -160,6 +160,30 @@ def delete_thread(id):
     except Exception as e:
         return jsonify({"error": str(e)})
     
+"""
+API Posts
+"""
+
+from posts.models import Post
+
+# funcion para codigo mas limpio
+def posts_to_dict(post):
+    return {
+        "id": post.id,
+        "contenido": post.contenido,
+        "imagen": post.imagen.url if post.imagen else None,
+        "created": post.created,
+        "featured": post.featured,
+    }
+
+# Metodo GET
+@app.route("/api/posts", methods=["GET"])
+def get_posts():
+    posts = Post.objects.all()
+    data = [posts_to_dict(p) for p in posts]
+    return jsonify(data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
