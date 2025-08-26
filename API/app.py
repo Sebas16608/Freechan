@@ -47,7 +47,7 @@ def post_boards():
             titulo=data["titulo"],
             short_name=data.get("short_name", "BN"),
             descripcion=data.get("descripcion", ""),
-            portada=None,  # Subida de imagen puedes manejarlo aparte
+            portada=None,
             featured=data.get("featured", False)
         )
         return jsonify({"mensaje": "Board creado correctamente", "board": boards_to_dict(board)}), 201
@@ -56,7 +56,7 @@ def post_boards():
 
 # Metodo PUT
 @app.route("/api/boards/<int:id>", methods=["PUT"])
-def update_boards(id):
+def update_board(id):
     try:
         board = Board.objects.get(id=id)
         data = request.get_json()
@@ -77,8 +77,8 @@ def update_boards(id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Metodo DELET
-@app.route("/api/boards/<int:id>", methods=["DELET"])
+# Metodo DELETE
+@app.route("/api/boards/<int:id>", methods=["DELETE"])
 def delete_board(id):
     try:
         board = Board.objects.get(id=id)
@@ -88,14 +88,14 @@ def delete_board(id):
         return jsonify({"error": "El board no existe"})
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+
 """
-API de Threads
+API Threads
 """
 from threads.models import Thread
 
-# funcion para conevertir un thread a dict
-def thread_to_dict(thread):
+# funcion para convertir un thread a dict
+def threads_to_dict(thread):
     return {
         "id": thread.id,
         "titulo": thread.titulo,
@@ -107,28 +107,28 @@ def thread_to_dict(thread):
 
 # Metodo GET
 @app.route("/api/threads", methods=["GET"])
-def get_thread():
-    thread = Thread.objects.all()
-    data=[thread_to_dict(t) for t in thread]
+def get_threads():
+    threads = Thread.objects.all()
+    data = [threads_to_dict(t) for t in threads]
     return jsonify(data), 200
 
 # Metodo POST
 @app.route("/api/threads", methods=["POST"])
-def post_thread():
+def post_threads():
     try:
         data = request.get_json()
         if not data or "titulo" not in data:
-            return jsonify({"error": "Titulo requerrido"}), 400
+            return jsonify({"error": "Titulo requerido"}), 400
         thread = Thread.objects.create(
-            titulo = data["titulo"],
-            contenido = data["contenido"],
-            imagen = data["imagen"],
-            featured = data["featured"]
+            titulo=data["titulo"],
+            contenido=data["contenido"],
+            imagen=data.get("imagen"),
+            featured=data.get("featured", False)
         )
-        return jsonify({"mensaje": "Thread Creado correctamente", "thread": thread_to_dict(thread)}), 201
+        return jsonify({"mensaje": "Thread creado correctamente", "thread": threads_to_dict(thread)}), 201
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+
 # Metodo PUT
 @app.route("/api/threads/<int:id>", methods=["PUT"])
 def update_thread(id):
@@ -142,28 +142,27 @@ def update_thread(id):
             thread.contenido = data["contenido"]
         if "imagen" in data:
             thread.imagen = data["imagen"]
-        return jsonify({"mensaje": f"El hilo con el id: {id} se ha modificado correctamente"}), 200
+        return jsonify({"mensaje": f"El thread con el id: {id} se ha modificado correctamente"}), 200
     except Thread.DoesNotExist:
-        return jsonify({"error": "El hilo no existe"}), 400
+        return jsonify({"error": "El thread no existe"}), 400
     except Exception as e:
         return jsonify({"error": str(e)})
 
-# Metodo DELET
+# Metodo DELETE
 @app.route("/api/threads/<int:id>", methods=["DELETE"])
 def delete_thread(id):
     try:
         thread = Thread.objects.get(id=id)
         thread.delete()
-        return jsonify({"mensaje": f"El hilo con el id {id} fue eliminado correctamente"})
+        return jsonify({"mensaje": f"El thread con el id {id} fue eliminado correctamente"})
     except Thread.DoesNotExist:
-        return jsonify({"error": "El hilo no existe"})
+        return jsonify({"error": "El thread no existe"})
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+
 """
 API Posts
 """
-
 from posts.models import Post
 
 # funcion para codigo mas limpio
@@ -181,9 +180,7 @@ def posts_to_dict(post):
 def get_posts():
     posts = Post.objects.all()
     data = [posts_to_dict(p) for p in posts]
-    return jsonify(data)
-
-
+    return jsonify(data), 200
 
 if __name__ == "__main__":
     app.run(debug=True)
