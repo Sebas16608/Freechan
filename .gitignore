@@ -32,6 +32,3 @@ htmlcov/
 # .env
 
 **/.env
-
-# Ignorar settings
-foro/settings.py
