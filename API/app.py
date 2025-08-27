@@ -220,6 +220,18 @@ def update_posts(id):
     except Exception as e:
         return jsonify({"error": str(e)})
 
+# Metodo Delete
+@app.route("/api/posts/<int:id>", methods=["DELETE"])
+def delete_post(id):
+    try:
+        posts = Post.objects.get(id=id)
+        posts.delete()
+        return jsonify({"mensaje": f"El post con el id {id} se elimino correctamente"})
+    except Post.DoesNotExist:
+        return jsonify({"error": "El post no existe"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
 
 
 if __name__ == "__main__":
