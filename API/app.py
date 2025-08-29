@@ -231,8 +231,6 @@ def delete_post(id):
         return jsonify({"error": "El post no existe"}), 404
     except Exception as e:
         return jsonify({"error": str(e)})
-
-
-
+    
 if __name__ == "__main__":
     app.run(debug=True)
