@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 import django
 import sys
 import os
+from flask_cors import CORS
 
 # Configuracion de rutas
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -13,6 +14,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "foro.settings")
 django.setup()
 
 app = Flask(__name__)
+CORS(app)
 
 # Boards' API
 from boards.models import Board
@@ -28,12 +30,23 @@ def boards_to_dict(board):
         "featured": board.featured,
     }
 
-# Metodo GET
+# Metodo GET (todos los boards)
 @app.route("/api/boards", methods=["GET"])
 def get_boards():
     boards = Board.objects.all()
     data = [boards_to_dict(b) for b in boards]
     return jsonify(data), 200
+
+# 🔥 NUEVO: Metodo GET para un board específico
+@app.route("/api/boards/<int:id>", methods=["GET"])
+def get_board(id):
+    try:
+        board = Board.objects.get(id=id)
+        return jsonify(boards_to_dict(board)), 200
+    except Board.DoesNotExist:
+        return jsonify({"error": "Board no existente"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Metodo POST
 @app.route("/api/boards", methods=["POST"])
@@ -106,12 +119,23 @@ def threads_to_dict(thread):
         "board_id": thread.board.id if thread.board else None, 
     }
 
-# Metodo GET
+# Metodo GET (todos los threads)
 @app.route("/api/threads", methods=["GET"])
 def get_threads():
     threads = Thread.objects.all()
     data = [threads_to_dict(t) for t in threads]
     return jsonify(data), 200
+
+# 🔥 NUEVO: Metodo GET para un thread específico
+@app.route("/api/threads/<int:id>", methods=["GET"])
+def get_thread(id):
+    try:
+        thread = Thread.objects.get(id=id)
+        return jsonify(threads_to_dict(thread)), 200
+    except Thread.DoesNotExist:
+        return jsonify({"error": "Thread no existente"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Metodo POST
 @app.route("/api/threads", methods=["POST"])
@@ -176,15 +200,26 @@ def post_to_dict(post):
         "imagen": post.imagen.url if post.imagen else None,
         "created": post.created,
         "featured": post.featured,
-        "thread_id": post.thread.id if post.thread else None,  # <- agregado
+        "thread_id": post.thread.id if post.thread else None,
     }
 
-# Metodo GET
+# Metodo GET (todos los posts)
 @app.route("/api/posts", methods=["GET"])
 def get_posts():
     posts = Post.objects.all()
     data = [post_to_dict(p) for p in posts]
     return jsonify(data), 200
+
+# 🔥 NUEVO: Metodo GET para un post específico
+@app.route("/api/posts/<int:id>", methods=["GET"])
+def get_post(id):
+    try:
+        post = Post.objects.get(id=id)
+        return jsonify(post_to_dict(post)), 200
+    except Post.DoesNotExist:
+        return jsonify({"error": "Post no existente"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Metodo POST
 @app.route("/api/posts", methods=["POST"])
@@ -198,7 +233,7 @@ def post_posts():
             imagen=data.get("imagen"),
             created=data.get("created"),
             featured=data.get("featured"),
-            threard_id=data["thread_id"],
+            thread_id=data["thread_id"],
         )
         return jsonify({"mensaje": "Post creado", "post": post_to_dict(posts)}), 201
     except Exception as e:
@@ -231,6 +266,6 @@ def delete_post(id):
         return jsonify({"error": "El post no existe"}), 404
     except Exception as e:
         return jsonify({"error": str(e)})
-    
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=1900)

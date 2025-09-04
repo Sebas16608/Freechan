@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thread - Freechan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="thread.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><a href="index.html" style="color: white; text-decoration: none;">🐱 Freechan</a></h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Boards</a>
+                <a href="#" class="nav-link">Threads</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <button class="btn btn-primary back-button" onclick="goBack()">
+            ← Volver atrás
+        </button>
+
+        <div class="thread-header" id="thread-header">
+            <div class="loading">Cargando thread...</div>
+        </div>
+
+        <section class="posts-container">
+            <div class="section-header">
+                <h3>💬 Respuestas</h3>
+                <button class="btn btn-primary" onclick="loadPosts()">
+                    🔄 Actualizar
+                </button>
+            </div>
+            
+            <div class="loading" id="posts-loading">
+                Cargando respuestas...
+            </div>
+            
+            <div class="error" id="posts-error" style="display: none;"></div>
+            
+            <div class="posts-list" id="posts-list">
+                <!-- Los posts se cargarán aquí -->
+            </div>
+        </section>
+
+        <section class="post-form">
+            <h3>📝 Responder al Thread</h3>
+            <form id="create-post-form">
+                <div class="form-group">
+                    <label for="post-content">Tu respuesta:</label>
+                    <textarea id="post-content" required placeholder="Escribe tu respuesta aquí..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-success">Publicar Respuesta</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Freechan. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="thread.js"></script>
+</body>
+</html>

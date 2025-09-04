@@ -1,0 +1,111 @@
+/* Board específico */
+.board-header {
+    margin-bottom: 2rem;
+}
+
+.threads-container {
+    margin-top: 2rem;
+}
+
+.thread-form {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.threads-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.thread-item {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s;
+    cursor: pointer;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.thread-item:hover {
+    transform: translateX(5px);
+}
+
+.thread-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.thread-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.thread-meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.thread-content {
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.thread-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.thread-stats {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.back-button {
+    margin-bottom: 2rem;
+}
+
+.no-threads {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+}

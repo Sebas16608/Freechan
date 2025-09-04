@@ -1,0 +1,118 @@
+/* Thread específico */
+.thread-header {
+    margin-bottom: 2rem;
+}
+
+.posts-container {
+    margin-top: 2rem;
+}
+
+.post-form {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 2rem;
+}
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post-item {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.post-author {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.post-content {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.post-action {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.post-action:hover {
+    text-decoration: underline;
+}
+
+.thread-main {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent-color);
+}
+
+.thread-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.thread-meta {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.thread-content {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.no-posts {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-style: italic;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+}
+
+.back-button {
+    margin-bottom: 2rem;
+}

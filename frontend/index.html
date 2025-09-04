@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freechan - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🐱 Freechan</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Boards</a>
+                <a href="#" class="nav-link">Threads</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Bienvenido a Freechan</h2>
+            <p>La plataforma de foros libre y open source</p>
+        </section>
+
+        <section class="boards-section">
+            <div class="section-header">
+                <h3>📋 Todos los Boards</h3>
+                <button class="btn btn-primary" onclick="loadBoards()">
+                    🔄 Actualizar
+                </button>
+            </div>
+            
+            <div class="loading" id="loading">
+                Cargando boards...
+            </div>
+            
+            <div class="error" id="error" style="display: none;"></div>
+            
+            <div class="boards-grid" id="boards-grid">
+                <!-- Los boards se cargarán aquí -->
+            </div>
+        </section>
+
+        <section class="featured-threads">
+            <h3>🔥 Threads Destacados</h3>
+            <div class="threads-list" id="featured-threads">
+                <!-- Threads destacados -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Freechan. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
