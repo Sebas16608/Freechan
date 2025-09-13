@@ -1,19 +1,35 @@
-# Freechan 🗿
+# 💬 FreeChan - Foro estilo 4chan
 
-Un foro estilo **4chan**, hecho con **Django** y **Flask API**, pensado como un espacio para que las personas puedan **interactuar y platicar** de forma anónima.  
+**FreeChan** es un foro en línea inspirado en el estilo de 4chan, donde los usuarios pueden **publicar mensajes, imágenes y participar en diferentes boards** de manera organizada y anónima.  
 
-## 🚀 Características
+---
 
-- 📌 **Boards** creados únicamente por el administrador (ejemplo: /pol/, /b/, /tech/).  
-- 📝 Los usuarios pueden crear **threads** dentro de los boards.  
-- 💬 Responder y conversar dentro de cada thread.  
-- 🖼️ Subida opcional de imágenes en threads.  
-- 🌐 API en Flask para interactuar con el backend de Django.  
-- 🎨 Diseño simple, inspirado en 4chan.  
+## ✨ Características principales
 
-## 🛠️ Tecnologías usadas
+- 📝 **Publicaciones y comentarios:** Los usuarios pueden crear hilos, responder y comentar publicaciones.  
+- 🖼 **Soporte de imágenes:** Permite subir y visualizar imágenes dentro de los hilos.  
+- 📂 **Boards organizados:** Clasificación por temas para mantener la comunidad ordenada.  
+- 🎨 **Estilos personalizables:** Posibilidad de aplicar temas y estilos CSS para mejorar la experiencia.  
 
-- [Python 3](https://www.python.org/)  
-- [Django](https://www.djangoproject.com/)  
-- [Flask](https://flask.palletsprojects.com/)  
-- SQLite solo de prueba a la hora de escalar y producción se usara PostgreSQL.  
+---
+
+## 🛠 Tecnologías utilizadas
+
+- **Backend:** Python, Django  
+- **Frontend:** HTML, CSS, JavaScript  
+- **Base de datos:** SQLite3 (desarrollo) / PostgreSQL (producción)  
+
+---
+
+## 🤝 Contribuciones
+
+Si querés contribuir a FreeChan:  
+- Envía un **pull request**  
+- O abre un **issue** para sugerencias y mejoras  
+
+---
+
+## 📬 Contacto
+
+Para dudas, consultas o propuestas de colaboración:  
+**Correo:** asebasrr444@gmail.com  
